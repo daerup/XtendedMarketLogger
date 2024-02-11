@@ -1,0 +1,25 @@
+{
+  "name": "xml-strompreis-example-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Benjamin Baeni",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "libxmljs2": "^0.33.0",
+    "open": "^10.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.17",
+    "@types/node-fetch": "^2.6.11",
+    "nodemon": "^3.0.3"
+  }
+}
