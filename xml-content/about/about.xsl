@@ -7,12 +7,12 @@
     <xsl:template match="about">
         <html>
             <head>
-                <title>Energiewerke Mittelland Reloaded</title>
+                <title>Xtended Market Logger</title>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
             </head>
             <body>
 
-                <h1>Energiewerke Mittelland Reloaded</h1>
+                <h1>Xtended Market Logger</h1>
                 <small>
                     <a href="index.xml">Home</a>
                 </small>

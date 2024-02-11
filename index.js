@@ -38,8 +38,6 @@ app.post('/updateData', (req, res) => {
     // create new node with attribute etc.
     plantStatistics.node('price', dataToUpdate.price).attr('date', dataToUpdate.date)
 
-    console.log(xmlDocDatabase.toString())
-
     // validate new database against schema
     const valid = validateDatabase(xmlDocDatabase)
     if (!valid) {
@@ -53,11 +51,58 @@ app.post('/updateData', (req, res) => {
     res.sendStatus(200)
 })
 
+app.post('/comparePlants', (req, res) => {
+    const timeframe = JSON.parse(req.body)
+    const startDate = new Date(timeframe.start)
+    const endDate = new Date(timeframe.end)
+    if (startDate == undefined || endDate == undefined) {
+        res.status(400).send('Invalid dates provided')
+        return
+    }
+    if (startDate > endDate) {
+        res.status(400).send('Invalid date range')
+        return
+    }
+
+    const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+    const databaseXml = fs.readFileSync(databasePath, 'utf-8')
+    const xmlDbDoc = libxmljs.parseXml(databaseXml)
+
+    const xmlCompareDoc = libxmljs.parseXml(databaseXml);
+    xmlCompareDoc.find('//price').forEach(price => price.remove());
+    xmlCompareDoc.find('//text()').forEach(textNode => {
+        if (textNode.text().trim() === '') {
+            textNode.remove();
+        }
+    });
+
+    const toDateString = (date) => `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+    const toComparableDate = (date) => Number(toDateString(date).replaceAll("-", ""))
+    for (const date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+        const comparableDate = toComparableDate(date);
+        xmlDbDoc.find('//plant').forEach(plant => {
+            const plantName = plant.get('name').text();
+            const plantStatistics = plant.get('statistics');
+            const price = plantStatistics.get(`price[number(translate(@date,'-','')) <= ${comparableDate}][last()]`);
+            if (price) {
+                xmlCompareDoc.get(`//plant[name="${plantName}"]/statistics`).node('price', price.text()).attr('date', toDateString(date));
+            }
+        });
+    }
+
+    // send as xml 
+    res.setHeader('Content-Type', 'application/xml');
+    res.setHeader('Content-Disposition', 'attachment; filename="response.xml"');
+    res.send(xmlCompareDoc.toString())
+
+})
+
 function validateDatabase(xmlDocDatabase) {
     const databaseXsd = fs.readFileSync(path.resolve('xml-content', 'database', 'database.xsd'), 'utf-8')
     const xmlDocDatabaseXsd = libxmljs.parseXml(databaseXsd)
     return xmlDocDatabase.validate(xmlDocDatabaseXsd)
 }
+
 const port = 6969;
 app.listen(port, () => {
     const url = `http://localhost:${port}`

@@ -36,9 +36,8 @@ a {
 
 label {
     display: inline-block;
-    width: 100px;
+    width: 150px;
     margin-right: 10px;
-    text-align: right;
     font-weight: bold;
     white-space: nowrap;
 }

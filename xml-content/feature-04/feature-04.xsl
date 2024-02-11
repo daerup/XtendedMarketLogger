@@ -9,7 +9,7 @@
     <xsl:template match="feature">
         <html>
             <head>
-                <title>Energiewerke Mittelland Reloaded</title>
+                <title>Xtended Market Logger</title>
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
             </head>
             <body>
