@@ -15,7 +15,7 @@
             </head>
             <body>
 
-                <h1>Ortschaftenvergleich - Resultat</h1>
+                <h1>Comparison - result</h1>
                 <h3>
                     <span> from </span>
                     <xsl:value-of select="//plant[1]//price[1]/@date"/>
@@ -27,16 +27,16 @@
                         <span> days) </span>
                     </span>
                 </h3>
-                <small>
-                    <a href="index.xml">Home</a>
-                </small>
+                <a href="index.xml" class="home-link">
+                    <small>Home</small>
+                </a>
 
-                <div class="content">
+                <div id="comparison" class="content">
                     <xsl:apply-templates select="//plant">
                         <xsl:sort select="sum(statistics/price) div count(statistics/price)" data-type="number"/>
                     </xsl:apply-templates>
                 </div>
-                <small>
+                <small class="links">
                     <a id="download">Download</a>
                 </small>
             </body>
@@ -47,26 +47,28 @@
     <xsl:template match="plant">
         <xsl:variable name="prices" select="statistics/price"/>
         <xsl:variable name="name" select="name"/>
-        <h2>
-            <xsl:value-of select="$name"/>
-        </h2>
-        <div>
-            <span>Average Price: </span>
-            <xsl:value-of select="format-number(sum($prices) div count($prices), '#.##')"/>
-        </div>
-        <div>
-            <span>Most Expensive Day: </span>
-            <xsl:call-template name="getFirstWithSorting">
-                <xsl:with-param name="plantName" select="$name"/>
-                <xsl:with-param name="sorting" select="'descending'"/>
-            </xsl:call-template>
-        </div>
-        <div>
-            <span>Cheapest Day: </span>
-            <xsl:call-template name="getFirstWithSorting">
-                <xsl:with-param name="plantName" select="$name"/>
-                <xsl:with-param name="sorting" select="'ascending'"/>
-            </xsl:call-template>
+        <div class="card">
+            <h2>
+                <xsl:value-of select="$name"/>
+            </h2>
+            <div>
+                <span>Average Price: </span>
+                <xsl:value-of select="format-number(sum($prices) div count($prices), '#.##')"/>
+            </div>
+            <div>
+                <span>Most Expensive Day: </span>
+                <xsl:call-template name="getFirstWithSorting">
+                    <xsl:with-param name="plantName" select="$name"/>
+                    <xsl:with-param name="sorting" select="'descending'"/>
+                </xsl:call-template>
+            </div>
+            <div>
+                <span>Cheapest Day: </span>
+                <xsl:call-template name="getFirstWithSorting">
+                    <xsl:with-param name="plantName" select="$name"/>
+                    <xsl:with-param name="sorting" select="'ascending'"/>
+                </xsl:call-template>
+            </div>
         </div>
     </xsl:template>
 

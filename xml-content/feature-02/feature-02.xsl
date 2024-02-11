@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
 
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->
-    <xsl:output doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <xsl:output doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
     <xsl:template match="feature">
         <html>
@@ -17,11 +18,11 @@
                 <!-- Title and nav  -->
 
                 <h1>Feature #02</h1>
-                <small>
-                    <a href="index.xml">Home</a>
-                </small>
+                <a href="index.xml" class="home-link">
+                    <small>Home</small>
+                </a>
 
-                <div class="content">
+                <div class="content card">
 
                     <div>
                         <p>
@@ -33,9 +34,7 @@
                         </xsl:call-template>
 
                         <!-- include statistics visualization  -->
-                        <xsl:apply-templates
-                                select="document('../database/database.xml')/energie-data/energie-plant/plant"
-                        >
+                        <xsl:apply-templates select="document('../database/database.xml')/energie-data/energie-plant/plant">
                         </xsl:apply-templates>
 
                     </div>
@@ -55,7 +54,8 @@
         <svg:svg width="600" height="300">
 
             <svg:text font-size="20" fill="white" x="0" y="50">
-                Price statistics <xsl:value-of select="name"/>:
+                Price statistics <xsl:value-of select="name"/>
+:
             </svg:text>
 
             <xsl:apply-templates/>
@@ -80,22 +80,22 @@
                 <!-- move to the lower left corner of the rectangle -->
                 <xsl:text>M </xsl:text>
                 <xsl:value-of select="$x-offset - 10"/>
-                <xsl:text> </xsl:text>
+                <xsl:text></xsl:text>
                 <xsl:value-of select="$y-offset"/>
                 <!-- draw line to the upper left corner of the rectangle -->
                 <xsl:text> L </xsl:text>
                 <xsl:value-of select="$x-offset - 10"/>
-                <xsl:text> </xsl:text>
+                <xsl:text></xsl:text>
                 <xsl:value-of select="$y"/>
                 <!-- draw line to the upper right corner of the rectangle -->
                 <xsl:text> L </xsl:text>
                 <xsl:value-of select="$x-offset + 10"/>
-                <xsl:text> </xsl:text>
+                <xsl:text></xsl:text>
                 <xsl:value-of select="$y"/>
                 <!-- draw line to the lower right corner of the rectangle -->
                 <xsl:text> L </xsl:text>
                 <xsl:value-of select="$x-offset + 10"/>
-                <xsl:text> </xsl:text>
+                <xsl:text></xsl:text>
                 <xsl:value-of select="$y-offset"/>
                 <!-- close path and fill the rectangle -->
                 <xsl:text> Z</xsl:text>
@@ -114,9 +114,7 @@
         </svg:text>
 
         <!-- bar legend -->
-        <svg:text
-                fill="white"
-        >
+        <svg:text fill="white">
             <xsl:attribute name="x">
                 <xsl:value-of select="$x-offset - 7"/>
             </xsl:attribute>
@@ -134,9 +132,7 @@
 
             <svg:defs>
                 <svg:pattern id="img" patternUnits="userSpaceOnUse" width="150" height="50">
-                    <svg:image
-                            xlink:href="https://www.hslu.ch/-/media/campus/common/images/header/hslu-logo-hslu.svg"
-                            width="100" height="50" x="0" y="0"/>
+                    <svg:image xlink:href="https://www.hslu.ch/-/media/campus/common/images/header/hslu-logo-hslu.svg" width="100" height="50" x="0" y="0"/>
                 </svg:pattern>
             </svg:defs>
 

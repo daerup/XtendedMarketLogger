@@ -36,29 +36,30 @@
                 <link rel="stylesheet" type="text/css" href="theme.css"/>
             </head>
             <body>
-                <h1>Ortschaftenvergleich</h1>
-                <small>
-                    <a href="index.xml">Home</a>
-                </small>
+                <h1>Plant comparison</h1>
+                <a href="index.xml" class="home-link">
+                    <small>Home</small>
+                </a>
 
                 <div class="content">
                     <div>
                         <p>
                             <i>Compare plants accross timeframe</i>
                         </p>
-                        <div>
-                            <label for="start-">Start of Timeframe:</label>
-                            <input type="date" id="start" name="start" value="{$firstDate}" min="{$firstDate}" max="{$lastDate}"/>
+                        <div class="request-form">
+                            <div>
+                                <label for="start">Start of Timeframe:</label>
+                                <input type="date" id="start" name="start" value="{$firstDate}" min="{$firstDate}" max="{$lastDate}" onfocus="this.showPicker()" />
+                            </div>
+                            <div>
+                                <label for="end">End of Timeframe:</label>
+                                <input type="date" id="end" name="end" value="{$lastDate}" min="{$firstDate}" max="{$lastDate}" onfocus="this.showPicker()"/>
+                            </div>
+                            <button id="compare">Compare</button>
                         </div>
-                        <div>
-                            <label for="end">End of Timeframe:</label>
-                            <input type="date" id="end" name="end" value="{$lastDate}" min="{$firstDate}" max="{$lastDate}"/>
-                        </div>
-                        <button id="compare">Compare</button>
                     </div>
                 </div>
-                <script src="ortschaftenvergleich/comparison.js" type="text/javascript"></script>
-
+                <script src="plantComparison/comparison.js" type="text/javascript"></script>
             </body>
         </html>
     </xsl:template>

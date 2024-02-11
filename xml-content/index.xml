@@ -2,38 +2,59 @@
 <?xml-stylesheet type="text/xsl" href="welcome/welcome.xsl"?>
 <menu>
     <item>
-        <text>Home</text>
-        <link>index.xml</link>
-        <index>0</index>
-    </item>
-    <item>
-        <text>Feature 1: cross-document XSLT</text>
+        <text>cross-document XSLT</text>
+        <description>View all plants</description>
+        <tags>
+            <tag>Default feature</tag>
+            <tag>XSLT</tag>
+        </tags>
         <link>feature-01.xml</link>
+        <author>Benjamin Bäni</author>
         <index>1</index>
     </item>
     <item>
-        <text>Feature 2: data-driven SVG</text>
+        <text>data-driven SVG</text>
+        <description>Get a graphical overview of prices</description>
+        <tags>
+            <tag>Default feature</tag>
+            <tag>SVG</tag>
+        </tags>
         <link>feature-02.xml</link>
+        <author>Benjamin Bäni</author>
         <index>2</index>
     </item>
     <item>
-        <text>Feature 3: FO and PDF</text>
+        <text>FO and PDF</text>
+        <description>Create a printable energie statistics</description>
+        <tags>
+            <tag>Default feature</tag>
+            <tag>Format-Object</tag>
+        </tags>
         <link>feature-03.xml</link>
+        <author>Benjamin Bäni</author>
         <index>3</index>
     </item>
     <item>
-        <text>Feature 4: add user input to data (using XPATH and XSD)</text>
+        <text>Add user input to data</text>
+        <description>Add custom price data</description>
+        <tags>
+            <tag>Default feature</tag>
+            <tag>XPath</tag>
+        </tags>
         <link>feature-04.xml</link>
+        <author>Benjamin Bäni</author>
         <index>4</index>
     </item>
     <item>
-        <text>Ortschaftenvergleich: Compare the different plants in regard to price and timeframes</text>
-        <link>ortschaftenvergleich.xml</link>
+        <text>Plant comparison</text>
+        <description>Compare the different plants in regard to price and timeframes</description>
+        <tags>
+            <tag>XSLT</tag>
+            <tag>XPath</tag>
+            <tag>XML-Programming</tag>
+        </tags>
+        <link>plantComparison.xml</link>
+        <author>Dario Portmann</author>
         <index>4</index>
-    </item>
-    <item>
-        <text>About</text>
-        <link>about.xml</link>
-        <index>5</index>
     </item>
 </menu>

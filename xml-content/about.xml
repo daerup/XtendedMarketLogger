@@ -1,7 +1,23 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet type="text/xsl" href="about/about.xsl"?>
 <about>
-    <version>2.0</version>
-    <date>28.01.2024</date>
-    <author>benjamin.baeni@hslu.ch</author>
+    <original>
+        <version>2.0</version>
+        <date>28.01.2024</date>
+        <authors>
+            <author>benjamin.baeni@hslu.ch</author>
+        </authors>
+        <source>https://elearning.hslu.ch/ilias/ilias.php?baseClass=ilrepositorygui&amp;cmd=view&amp;ref_id=6071657</source>
+    </original>
+    <fork>
+        <version>1.0</version>
+        <date>09.03.2024</date>
+        <authors>
+            <author>andrin.geiger@hslu.ch</author>
+            <author>dario.portmann@hslu.ch</author>
+            <author>jonas.fink@hslu.ch</author>
+            <author>vithursiya.vijayasingam@hslu.ch</author>
+        </authors>
+        <source>https://github.com/daerup/XtendedMarketLogger</source>
+    </fork>
 </about>
