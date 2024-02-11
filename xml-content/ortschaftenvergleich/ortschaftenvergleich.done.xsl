@@ -36,6 +36,9 @@
                         <xsl:sort select="sum(statistics/price) div count(statistics/price)" data-type="number"/>
                     </xsl:apply-templates>
                 </div>
+                <small>
+                    <a id="download">Download</a>
+                </small>
             </body>
         </html>
     </xsl:template>

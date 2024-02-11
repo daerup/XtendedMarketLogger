@@ -48,7 +48,7 @@
                         </p>
                         <div>
                             <label for="start-">Start of Timeframe:</label>
-                            <input type="date" id="start" name="start" value="2022-12-15" min="{$firstDate}" max="{$lastDate}"/>
+                            <input type="date" id="start" name="start" value="{$firstDate}" min="{$firstDate}" max="{$lastDate}"/>
                         </div>
                         <div>
                             <label for="end">End of Timeframe:</label>

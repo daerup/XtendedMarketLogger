@@ -12,18 +12,17 @@ async function createComparison() {
     const xsltUrl = '../ortschaftenvergleich/ortschaftenvergleich.done.xsl'; // URL to your XSLT file
     const blob = new Blob([xmlString], { type: 'text/xml' });
 
-    // Create a URL for the Blob
     const xmlUrl = URL.createObjectURL(blob);
 
-    // Load XSLT file
     const xsltRequest = new XMLHttpRequest();
     xsltRequest.open('GET', xsltUrl);
-    xsltRequest.onload = () => {
+    xsltRequest.onload = async () => {
         const xsltText = xsltRequest.responseText;
         const parser = new DOMParser();
         const xsltDoc = parser.parseFromString(xsltText, 'text/xml');
         const transformedXml = applyXsltTransformation(xmlUrl, xsltDoc);
         document.body.innerHTML = transformedXml;
+        await setDownloadLink(blob)
     };
     xsltRequest.send();
 }
@@ -37,10 +36,7 @@ function applyXsltTransformation(xmlUrl, xsltDoc) {
         xmlRequest.open('GET', xmlUrl, false);
         xmlRequest.send();
         const xmlDoc = xmlRequest.responseXML;
-
         const transformedDoc = processor.transformToFragment(xmlDoc, document);
-
-
         const serializer = new XMLSerializer();
         const transformedXml = serializer.serializeToString(transformedDoc);
         return transformedXml;
@@ -48,4 +44,11 @@ function applyXsltTransformation(xmlUrl, xsltDoc) {
         console.error('Error applying XSLT transformation');
         console.error(JSON.stringify(error));
     }
+}
+
+async function setDownloadLink(blob) {
+    const url = URL.createObjectURL(blob);
+    const link = document.getElementById('download');
+    link.href = url;
+    link.download = 'comparison.xml';
 }
