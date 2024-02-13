@@ -57,17 +57,12 @@ function setDownloadLink(blob) {
 function setCardColors() {
     const firstColor = { r: 13, g: 106, b: 83 };
     const lastColor = { r: 219, g: 84, b: 90 };
-
     const cards = document.querySelectorAll('#comparison .card');
-    const totalCards = cards.length;
 
     const calculateGradientColor = (firstColor, lastColor, index, totalCards) => {
-        const currentR = firstColor.r + (lastColor.r - firstColor.r) / (totalCards - 1) * index;
-        const currentG = firstColor.g + (lastColor.g - firstColor.g) / (totalCards - 1) * index;
-        const currentB = firstColor.b + (lastColor.b - firstColor.b) / (totalCards - 1) * index;
-        return `rgb(${currentR}, ${currentG}, ${currentB})`;
+        const color = (property) => firstColor[property] + (lastColor[property] - firstColor[property]) / (totalCards - 1) * index;
+        return `rgb(${color("r")}, ${color("g")}, ${color("b")})`;
     };
-
 
     const groups = Array.from(cards).reduce((acc, card) => {
         const key = card.getElementsByTagName('div')[0].innerText;
