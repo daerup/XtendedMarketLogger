@@ -68,8 +68,20 @@ function setCardColors() {
         return `rgb(${currentR}, ${currentG}, ${currentB})`;
     };
 
-    cards.forEach((card, index) => {
-        const gradientColor = calculateGradientColor(firstColor, lastColor, index, totalCards);
-        card.style.backgroundColor = gradientColor;
+
+    const groups = Array.from(cards).reduce((acc, card) => {
+        const key = card.getElementsByTagName('div')[0].innerText;
+        if (!acc[key]) {
+            acc[key] = [];
+        }
+        acc[key].push(card);
+        return acc;
+    }, {});
+
+    Object.entries(groups).forEach(([key, value], index) => {
+        const color = calculateGradientColor(firstColor, lastColor, index, Object.keys(groups).length);
+        value.forEach(card => {
+            card.style.backgroundColor = color;
+        });
     });
 }
