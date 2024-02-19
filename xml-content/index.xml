@@ -57,4 +57,15 @@
         <author>Dario Portmann</author>
         <index>4</index>
     </item>
+    <item>
+        <text>Calculator</text>
+        <description>Calculate power usage and print report</description>
+        <tags>
+            <tag>Format Object</tag>
+            <tag>XML-Programming</tag>
+        </tags>
+        <link>calculator.xml</link>
+        <author>Andrin Geiger</author>
+        <index>4</index>
+    </item>
 </menu>
