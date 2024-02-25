@@ -13,10 +13,10 @@
         <version>1.0</version>
         <date>09.03.2024</date>
         <authors>
-            <author>andrin.geiger@hslu.ch</author>
-            <author>dario.portmann@hslu.ch</author>
-            <author>jonas.fink@hslu.ch</author>
-            <author>vithursiya.vijayasingam@hslu.ch</author>
+            <author>andrin.geiger@stud.hslu.ch</author>
+            <author>dario.portmann@stud.hslu.ch</author>
+            <author>jonas.fink@stud.hslu.ch</author>
+            <author>vithursiya.vijayasingam@stud.hslu.ch</author>
         </authors>
         <source>https://github.com/daerup/XtendedMarketLogger</source>
     </fork>
