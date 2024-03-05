@@ -21,8 +21,15 @@
                 <div class="content">
                     <div>
                         <p>
-                            <i>TEXT</i>
+                            <i>Import XML file to insert new plant power</i>
                         </p>
+                        <form action="/newPlant" method="post" class="request-form">
+                            <input type="file" id="xmlFileInput" accept=".xml"/>
+                            <button type="button" id="addPlant">Add</button>
+                            <div class="message" id="successMessage"></div>
+                            <div class="message" id="errorMessage"></div>
+                        </form>
+                        <script src="dataimport/validation.js" type="text/javascript"></script>
 
                     </div>
                 </div>

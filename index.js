@@ -51,6 +51,55 @@ app.post('/updateData', (req, res) => {
     res.sendStatus(200)
 })
 
+app.post('/newPlant', (req, res) => {
+    try {
+        const xmlData = req.body;
+
+        const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+        const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+        const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+        const plantNode = libxmljs.parseXml(xmlData).root();
+
+        if (!plantNode || plantNode.name() !== 'plant') {
+            throw new Error('Invalid XML structure: root element must be <plant>.');
+        }
+
+        let plantInDatabase = xmlDocDatabase.get(`//plants/plant[name="${plantNode.get('name')}"]`);
+        if (!plantInDatabase) {
+            const plantsNode = xmlDocDatabase.root();
+            plantInDatabase = plantsNode.node('plant');
+            plantInDatabase.node('name', plantNode.get('name').text());
+        }
+
+        const statistics = plantNode.get('statistics');
+        if (statistics) {
+            plantInDatabase.addChild(statistics);
+        }
+
+        const energiePlantNode = xmlDocDatabase.get('//name');
+
+        if (energiePlantNode) {
+            energiePlantNode.parent().addPrevSibling(plantInDatabase);
+        } else {
+            throw new Error('Invalid XML structure: <energie-plant> tag not found.');
+        }
+
+        const valid = validateDatabase(xmlDocDatabase)
+
+        if (!valid) {
+            res.status(400).send('Invalid XML after update');
+            return;
+        }
+
+        fs.writeFileSync(databasePath, xmlDocDatabase.toString(), 'utf-8');
+        res.sendStatus(200);
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.status(400).send(error.message);
+    }
+});
+
+
 app.post('/comparePlants', (req, res) => {
     const timeframe = JSON.parse(req.body)
     const startDate = new Date(timeframe.start)
