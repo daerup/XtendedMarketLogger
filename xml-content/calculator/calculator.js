@@ -3,23 +3,23 @@ document.getElementById("createXML").addEventListener("click", exportXML);
 document.getElementById("createPDF").addEventListener("click", createPdf);
 
 function addDevice() {
-  var name = document.getElementById("name").value;
-  var runtime = document.getElementById("runtime").value;
-  var power = document.getElementById("power").value;
+  const name = document.getElementById("name").value;
+  const runtime = document.getElementById("runtime").value;
+  const power = document.getElementById("power").value;
 
   if (name === "" || runtime === "" || power === "") {
     alert("Please fill in all the required fields.");
     return;
   }
 
-  var powerusage = (runtime * power) / 1000;
+  const powerusage = (runtime * power) / 1000;
 
-  var table = document.getElementById("deviceTable");
-  var row = table.insertRow(-1);
-  var nameCell = row.insertCell(0);
-  var runtimeCell = row.insertCell(1);
-  var powerCell = row.insertCell(2);
-  var totalCell = row.insertCell(3);
+  const table = document.getElementById("deviceTable");
+  const row = table.insertRow(-1);
+  const nameCell = row.insertCell(0);
+  const runtimeCell = row.insertCell(1);
+  const powerCell = row.insertCell(2);
+  const totalCell = row.insertCell(3);
 
   nameCell.innerHTML = name;
   runtimeCell.innerHTML = runtime;
@@ -28,40 +28,39 @@ function addDevice() {
 }
 
 function calculateTotal() {
-  var table = document.getElementById("deviceTable");
-  var total = 0;
+  let total = 0;
+  const table = document.getElementById("deviceTable");
 
-  for (var i = 1; i < table.rows.length; i++) {
-    var powerusage = parseFloat(table.rows[i].cells[2].innerHTML);
+  for (const i = 1; i < table.rows.length; i++) {
+    const powerusage = parseFloat(table.rows[i].cells[2].innerHTML);
     total += powerusage;
   }
 
   return total.toFixed(3);
 }
 
-function createXML() {
-  var table = document.getElementById("deviceTable");
-  var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += "<table>\n";
+async function createXML() {
+  const table = document.getElementById("deviceTable");
+  const data = Array.from(table.rows)
+    .slice(1)
+    .map((row) => ({
+      name: row.cells[0].innerHTML,
+      runtime: row.cells[1].innerHTML,
+      power: row.cells[2].innerHTML,
+    }));
+  const response = await fetch("/buildXML", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
 
-  for (var i = 1; i < table.rows.length; i++) {
-    var name = table.rows[i].cells[0].innerHTML;
-    var runtime = table.rows[i].cells[1].innerHTML;
-    var power = table.rows[i].cells[2].innerHTML;
-
-    xml += "  <device>\n";
-    xml += "    <name>" + name + "</name>\n";
-    xml += "    <runtime>" + runtime + "</runtime>\n";
-    xml += "    <power>" + power + "</power>\n";
-    xml += "  </device>\n";
+  if (response.status !== 200) {
+    throw new Error("Failed to create XML");
   }
-
-  xml += "</table>";
-
-  return xml;
+  return await response.text();
 }
 
 function loadXMLDoc(filename) {
+  let xhttp;
   if (window.ActiveXObject) {
     xhttp = new ActiveXObject("Msxml2.XMLHTTP");
   } else {
@@ -72,8 +71,8 @@ function loadXMLDoc(filename) {
   return xhttp.responseXML;
 }
 
-function exportXML() {
-  const xmlString = createXML();
+async function exportXML() {
+  const xmlString = await createXML();
   const blob = new Blob([xmlString], { type: "application/xml" });
   const link = document.getElementById("dummyXML");
   link.href = window.URL.createObjectURL(blob);
@@ -82,28 +81,30 @@ function exportXML() {
 }
 
 async function createPdf() {
-  var xmlString = createXML();
-  var parser = new DOMParser();
-  var xmlDoc = parser.parseFromString(xmlString, "application/xml");
-  var xsl = loadXMLDoc("calculator/fo.xsl");
-  xsltProcessor = new XSLTProcessor();
+  const xmlString = await createXML();
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+  const xsl = loadXMLDoc("calculator/fo.xsl");
+  const xsltProcessor = new XSLTProcessor();
   xsltProcessor.importStylesheet(xsl);
-  resultDocument = xsltProcessor.transformToFragment(xmlDoc, document);
+  const resultDocument = xsltProcessor.transformToFragment(xmlDoc, document);
 
   const serializer = new XMLSerializer();
-  const document_fragment_string = serializer.serializeToString(resultDocument);
+  const documentFragmentString = serializer.serializeToString(resultDocument);
 
   const response = await fetch("/convertToPdf", {
     method: "POST",
-    body: document_fragment_string,
+    body: documentFragmentString,
   });
 
-  if (response.status === 200) {
-    const buffer = await response.arrayBuffer();
-    const blob = new Blob([buffer], { type: "application/pdf" });
-    const link = document.getElementById("dummyPDF");
-    link.href = window.URL.createObjectURL(blob);
-    link.download = "myReport.pdf";
-    link.click();
+  if (response.status !== 200) {
+    throw new Error("Failed to create PDF");
   }
+
+  const buffer = await response.arrayBuffer();
+  const blob = new Blob([buffer], { type: "application/pdf" });
+  const link = document.getElementById("dummyPDF");
+  link.href = window.URL.createObjectURL(blob);
+  link.download = "myReport.pdf";
+  link.click();
 }
