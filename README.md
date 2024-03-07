@@ -8,6 +8,7 @@ Der Xtended-Market-Logger&trade; ist ein Produkt aus der XML & JSON Technologies
 
 ## Frameworks und Technologien
 - XML
+- JSON
 - CSS
 - HTML
 - JavaScript
@@ -15,12 +16,14 @@ Der Xtended-Market-Logger&trade; ist ein Produkt aus der XML & JSON Technologies
 - Express
 
 ## Stolpersteine
-
+Ein Herausforderung war es, beim Vergleich das Resultierende XML-Dokument erneut für den Benutzer darzustellen. Gelöst werden konnte dies, indem das 
 
 ## Einsatz von nicht XML Technologien
-Für den Aufbau von in memory XML-Dokumenten wurde JavaScript verwendet. Hierfür wurde die Bibliothek [`libxmljs`](https://www.npmjs.com/package/libxmljs) verwendet. Diese Bibliothek ermöglicht es, XML-Dokumente in JavaScript zu erstellen und zu manipulieren.
+Für den Aufbau von in memory XML-Dokumenten wurde JavaScript benutzt. Hierfür wurde die Bibliothek [`libxmljs`](https://www.npmjs.com/package/libxmljs) verwendet. Diese Bibliothek ermöglicht es, XML-Dokumente in JavaScript zu erstellen und zu manipulieren.
 
-Auch wurde JavaScirpt verwendet, um Manipulationen am DOM vorzunehmen und diesen ansprechlicher zu gestalten.
+Auch wurde JavaScript verwendet, um Manipulationen am DOM vorzunehmen und diesen ansprechlicher zu gestalten.
+
+Die Anfragen an das Backend wurden mit JSON gestaltet. Dies hat den Grund, dass die JavaScript Objekte, welche an das Backend übertragen werden, besonders einfach in JSON umgewandelt werden können. Auch verwenden wir ```fetch```, welches standardmässig JSON verwendet. Das bauen von XML-Requests wäre möglich, dann könnte aber ```libxmljs```nicht mehr verwendet werden und wir müssten auf eine andere Bibliothek oder string interpolation zurückgreifen. Um die Komplexität des Projektes zu reduzieren, haben wir uns deshalb für Kommunukation in JSON entschieden.
 
 ## Fazit
 Das detaillierte Arbeiten mit XML war neu für uns. Vor dieser Blockwoche hatten wir nur oberflächliche Kenntnisse über XML. Uns war nicht bewusst, wie mächtig XML ist und wie viele Anwendungsmöglichkeiten es gibt.
