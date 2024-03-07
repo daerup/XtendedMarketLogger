@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="welcome/welcome.xsl"?>
 <menu>
     <item>
@@ -77,6 +77,18 @@
         </tags>
         <link>dataimport.xml</link>
         <author>Vithursiya Vijayasingam</author>
+        <index>7</index>
+    </item>
+    <item>
+        <text>Calculator Visualisation</text>
+        <description>Visualisatise the xml file optained from the Calculator</description>
+        <tags>
+            <tag>SVG</tag>
+            <tag>XSLT</tag>
+            <tag>XML-Programming</tag>
+        </tags>
+        <link>calcvis.xml</link>
+        <author>Jonas Fink</author>
         <index>7</index>
     </item>
 </menu>
