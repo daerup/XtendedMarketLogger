@@ -18,6 +18,10 @@ Neue Geräte werden zuerst in einer Tabelle auf der Website dargestellt. Diese T
 
 ![alt text](./documentation/images/calculator.svg)
 
+### Data import
+Mit diesem Feature können Benutzer eine XML-Datei hochladen. Die hochgeladene Datei wird validiert und in der Datenbank `database.xml` gespeichert. Benutzer haben ebenfalls die Möglichkeit, ein XML direkt zu schreiben und hochzuladen. Um die XML-Datei den Benutzern einfacher darzustellen, wird `validation.js` verwendet. Sobald eine XML-Datei ausgewählt wird, wird sie in der Preview-Textarea angezeigt. Mit dem 'Add'-Button im Formular kann bestätigt werden, dass die XML-Datei in die Datenbank geladen werden darf. Die Validierung der XML erfolgt serverseitig in `index.js` und basiert auf einem XSD-Schema `uploadXML.xsd`. 
+![alt text](./documentation/images/dataimport.svg)
+
 ## Frameworks und Technologien
 
 - XML
