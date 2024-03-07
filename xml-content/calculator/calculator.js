@@ -3,23 +3,23 @@ document.getElementById("createXML").addEventListener("click", exportXML);
 document.getElementById("createPDF").addEventListener("click", createPdf);
 
 function addDevice() {
-  let name = document.getElementById("name").value;
-  let runtime = document.getElementById("runtime").value;
-  let power = document.getElementById("power").value;
+  const name = document.getElementById("name").value;
+  const runtime = document.getElementById("runtime").value;
+  const power = document.getElementById("power").value;
 
   if (name === "" || runtime === "" || power === "") {
     alert("Please fill in all the required fields.");
     return;
   }
 
-  let powerusage = (runtime * power) / 1000;
+  const powerusage = (runtime * power) / 1000;
 
-  let table = document.getElementById("deviceTable");
-  let row = table.insertRow(-1);
-  let nameCell = row.insertCell(0);
-  let runtimeCell = row.insertCell(1);
-  let powerCell = row.insertCell(2);
-  let totalCell = row.insertCell(3);
+  const table = document.getElementById("deviceTable");
+  const row = table.insertRow(-1);
+  const nameCell = row.insertCell(0);
+  const runtimeCell = row.insertCell(1);
+  const powerCell = row.insertCell(2);
+  const totalCell = row.insertCell(3);
 
   nameCell.innerHTML = name;
   runtimeCell.innerHTML = runtime;
@@ -28,11 +28,11 @@ function addDevice() {
 }
 
 function calculateTotal() {
-  let table = document.getElementById("deviceTable");
   let total = 0;
+  const table = document.getElementById("deviceTable");
 
-  for (let i = 1; i < table.rows.length; i++) {
-    let powerusage = parseFloat(table.rows[i].cells[2].innerHTML);
+  for (const i = 1; i < table.rows.length; i++) {
+    const powerusage = parseFloat(table.rows[i].cells[2].innerHTML);
     total += powerusage;
   }
 
@@ -40,7 +40,7 @@ function calculateTotal() {
 }
 
 async function createXML() {
-  let table = document.getElementById("deviceTable");
+  const table = document.getElementById("deviceTable");
   const data = Array.from(table.rows)
     .slice(1)
     .map((row) => ({
@@ -81,10 +81,10 @@ async function exportXML() {
 }
 
 async function createPdf() {
-  let xmlString = await createXML();
-  let parser = new DOMParser();
-  let xmlDoc = parser.parseFromString(xmlString, "application/xml");
-  let xsl = loadXMLDoc("calculator/fo.xsl");
+  const xmlString = await createXML();
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+  const xsl = loadXMLDoc("calculator/fo.xsl");
   const xsltProcessor = new XSLTProcessor();
   xsltProcessor.importStylesheet(xsl);
   const resultDocument = xsltProcessor.transformToFragment(xmlDoc, document);

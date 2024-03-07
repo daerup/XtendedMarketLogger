@@ -16,7 +16,7 @@ Der Xtended-Market-Logger&trade; ist ein Produkt aus der XML & JSON Technologies
 - Express
 
 ## Stolpersteine
-Ein Herausforderung war es, beim Vergleich das Resultierende XML-Dokument erneut für den Benutzer darzustellen. Gelöst werden konnte dies, indem das 
+Ein Herausforderung war es, bei 'plantComparison' das Resultierende XML-Dokument erneut für den Benutzer darzustellen. Gelöst werden konnte dies, indem auf der Client-Seite mittels XSLT Transformiert wurde und das Resultat mit JavaScript den DOM manipuliert wurde.
 
 ## Einsatz von nicht XML Technologien
 Für den Aufbau von in memory XML-Dokumenten wurde JavaScript benutzt. Hierfür wurde die Bibliothek [`libxmljs`](https://www.npmjs.com/package/libxmljs) verwendet. Diese Bibliothek ermöglicht es, XML-Dokumente in JavaScript zu erstellen und zu manipulieren.
