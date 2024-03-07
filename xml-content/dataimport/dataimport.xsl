@@ -23,11 +23,12 @@
                         <p>
                             <i>Import XML file to insert new plant power</i>
                         </p>
+
                         <form action="/newPlant" method="post" class="request-form">
                             <input type="file" id="xmlFileInput" accept=".xml"/>
-                            <button type="button" id="addPlant">Add</button>
-                            <div class="message" id="successMessage"></div>
-                            <div class="message" id="errorMessage"></div>
+                            <textarea name="xmlFileText" id="xmlFileText" required=""></textarea>
+                            <button type="submit" id="addPlant">Add</button>
+
                         </form>
                         <script src="dataimport/validation.js" type="text/javascript"></script>
 

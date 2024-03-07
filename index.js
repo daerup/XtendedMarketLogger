@@ -72,58 +72,39 @@ app.post("/updateData", (req, res) => {
 });
 
 app.post("/newPlant", (req, res) => {
-  try {
-    const xmlData = req.body;
+    try {
+        const xmlData = req.body.xmlFileText;
 
-    const databasePath = path.resolve(
-      "xml-content",
-      "database",
-      "database.xml",
-    );
-    const databaseXml = fs.readFileSync(databasePath, "utf-8");
-    const xmlDocDatabase = libxmljs.parseXml(databaseXml);
-    const plantNode = libxmljs.parseXml(xmlData).root();
+        const uploadValid = validationXML(libxmljs.parseXml(xmlData))
+        if (!uploadValid) {
+            res.status(400).send('Invalid XML structure');
+            return;
+        }
 
-    if (!plantNode || plantNode.name() !== "plant") {
-      throw new Error("Invalid XML structure: root element must be <plant>.");
+        const databasePath = path.resolve('xml-content', 'database', 'database.xml');
+        const databaseXml = fs.readFileSync(databasePath, 'utf-8');
+        const xmlDocDatabase = libxmljs.parseXml(databaseXml);
+        const newPlantNode = libxmljs.parseXml(xmlData).root();
+        const alreadyExists = xmlDocDatabase.get(`//plant[name="${newPlantNode.get('name').text()}"]`);
+        if (alreadyExists) {
+            res.status(400).send('Plant already exists');
+            return;
+        }
+
+        const plantInDatabase = xmlDocDatabase.root().get('energie-plant');
+        plantInDatabase.addChild(newPlantNode);
+
+        const xmlDocument = libxmljs.parseXml(xmlDocDatabase, { noblanks: true });
+        const formattedXmlString = xmlDocument.toString({ format: true });
+
+        fs.writeFileSync(databasePath, formattedXmlString, 'utf-8');
+        res.sendStatus(200);
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.status(400).send(error.message);
     }
-
-    let plantInDatabase = xmlDocDatabase.get(
-      `//plants/plant[name="${plantNode.get("name")}"]`,
-    );
-    if (!plantInDatabase) {
-      const plantsNode = xmlDocDatabase.root();
-      plantInDatabase = plantsNode.node("plant");
-      plantInDatabase.node("name", plantNode.get("name").text());
-    }
-
-    const statistics = plantNode.get("statistics");
-    if (statistics) {
-      plantInDatabase.addChild(statistics);
-    }
-
-    const energiePlantNode = xmlDocDatabase.get("//name");
-
-    if (energiePlantNode) {
-      energiePlantNode.parent().addPrevSibling(plantInDatabase);
-    } else {
-      throw new Error("Invalid XML structure: <energie-plant> tag not found.");
-    }
-
-    const valid = validateDatabase(xmlDocDatabase);
-
-    if (!valid) {
-      res.status(400).send("Invalid XML after update");
-      return;
-    }
-
-    fs.writeFileSync(databasePath, xmlDocDatabase.toString(), "utf-8");
-    res.sendStatus(200);
-  } catch (error) {
-    console.error("Error:", error.message);
-    res.status(400).send(error.message);
-  }
 });
+
 
 app.post("/comparePlants", (req, res) => {
   const timeframe = JSON.parse(req.body);
@@ -188,6 +169,13 @@ function validateDatabase(xmlDocDatabase) {
   );
   const xmlDocDatabaseXsd = libxmljs.parseXml(databaseXsd);
   return xmlDocDatabase.validate(xmlDocDatabaseXsd);
+}
+
+function validationXML(xmlFile){
+    const upoloadXsd = fs.readFileSync(path.resolve('xml-content', 'database', 'uploadXML.xsd'), 'utf-8');
+    const uploadXMLXsd = libxmljs.parseXml(upoloadXsd);
+
+    return xmlFile.validate(uploadXMLXsd);
 }
 
 const port = 6969;
