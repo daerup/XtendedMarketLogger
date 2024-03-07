@@ -4,7 +4,10 @@ Der Xtended-Market-Logger&trade; ermöglicht es, die Strompreise von verschieden
 Der Xtended-Market-Logger&trade; ist ein Produkt aus der XML & JSON Technologies Blockwoche an der Hochschule Luzern.
 
 ## Architektur
+### Plant Comparison
+Hier wird zunächst ein Formular aufgebaut, welches Einschränkungen aus der Datenbank berücksichtigt (frühestes und spätestes Datum). Beim Bestätigen des Formulars werden die Daten im ```comparison.js``` ausgelesen und als JSON an ```index.js``` des Servers gesendet. Dieser erstellt dann anhand der mitgegebenen Daten und der bestehenden Datenbank in memory ein XML-Dokument. Dieses Dokument wird dann von ```plantComparison.done.xsl``` in XHTML umgewandelt. ```comparison.js``` nimmt das Resultat entgegen und überschreibt den Body von ```plantComparison.xml``` mit dem Resultat.
 
+![alt text](documentation/images/comparison.png)
 
 ## Frameworks und Technologien
 - XML
