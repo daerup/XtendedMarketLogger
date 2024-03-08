@@ -31,9 +31,8 @@
         <text>Data import</text>
         <description>Import XML file to insert new plant power</description>
         <tags>
-            <tag>Format Object</tag>
+            <tag>XSD</tag>
             <tag>XML-Programming</tag>
-            <tag>XSLT</tag>
         </tags>
         <link>dataimport.xml</link>
         <author>Vithursiya Vijayasingam</author>
@@ -46,6 +45,7 @@
         <tags>
             <tag>SVG</tag>
             <tag>XSLT</tag>
+            <tag>XSD</tag>
             <tag>XML-Programming</tag>
         </tags>
         <link>comparison-visualization.xml</link>
