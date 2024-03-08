@@ -76,7 +76,7 @@ app.post("/newPlant", (req, res) => {
     try {
         const xmlData = req.body.xmlFileText;
 
-        const uploadValid = validationXML(libxmljs.parseXml(xmlData))
+        const uploadValid = validationXML(libxmljs.parseXml(xmlData), 'uploadXML.xsd')
         if (!uploadValid) {
             res.status(400).send('Invalid XML structure');
             return;
@@ -166,6 +166,10 @@ app.post("/comparePlants", (req, res) => {
 app.post('/vis', (req, res) => {
     try {
         const xmlData = req.body;
+        if(!validationXML(libxmljs.parseXml(xmlData), 'database.xsd')) {
+            res.status(400).send('Invalid XML structure');
+            return;
+        }
 
         res.send(xmlData);
     }
@@ -184,8 +188,8 @@ function validateDatabase(xmlDocDatabase) {
   return xmlDocDatabase.validate(xmlDocDatabaseXsd);
 }
 
-function validationXML(xmlFile){
-    const upoloadXsd = fs.readFileSync(path.resolve('xml-content', 'database', 'uploadXML.xsd'), 'utf-8');
+function validationXML(xmlFile, xsdPath){
+    const upoloadXsd = fs.readFileSync(path.resolve('xml-content', 'database', xsdPath), 'utf-8');
     const uploadXMLXsd = libxmljs.parseXml(upoloadXsd);
 
     return xmlFile.validate(uploadXMLXsd);
