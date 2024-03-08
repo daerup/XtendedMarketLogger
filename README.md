@@ -5,6 +5,7 @@ Der Xtended-Market-Logger&trade; ermöglicht es, die Strompreise von verschieden
 Der Xtended-Market-Logger&trade; ist ein Produkt aus der XML & JSON Technologies Blockwoche an der Hochschule Luzern.
 
 ## Architektur
+Hier werden alle Architekturen für die einzelnen Features ausführlich dargestellt und erklärt.
 
 ### Plant Comparison
 
@@ -19,7 +20,7 @@ Neue Geräte werden zuerst in einer Tabelle auf der Website dargestellt. Diese T
 ![alt text](./documentation/images/calculator.svg)
 
 ### Data import
-Mit diesem Feature können Benutzer eine XML-Datei hochladen. Die hochgeladene Datei wird validiert und in der Datenbank `database.xml` gespeichert. Benutzer haben ebenfalls die Möglichkeit, ein XML direkt zu schreiben und hochzuladen. Um die XML-Datei den Benutzern einfacher darzustellen, wird `validation.js` verwendet. Sobald eine XML-Datei ausgewählt wird, wird sie in der Preview-Textarea angezeigt. Mit dem 'Add'-Button im Formular kann bestätigt werden, dass die XML-Datei in die Datenbank geladen werden darf. Die Validierung der XML erfolgt serverseitig in `index.js` und basiert auf einem XSD-Schema `uploadXML.xsd`. 
+Mit diesem Feature können Benutzer eine XML-Datei hochladen. Die hochgeladene Datei wird validiert und in der Datenbank `database.xml` gespeichert. Benutzer haben ebenfalls die Möglichkeit, ein XML direkt zu schreiben und hochzuladen. Um die XML-Datei den Benutzern einfacher darzustellen, wird `validation.js` verwendet. Sobald eine XML-Datei ausgewählt wird, wird sie in der Preview-Textarea angezeigt. Mit dem 'Add'-Button im Formular kann bestätigt werden, dass die XML-Datei in die Datenbank geladen werden darf. Die Validierung der XML erfolgt serverseitig in `index.js` und basiert auf einem XSD-Schema `uploadXML.xsd`.
 ![alt text](./documentation/images/dataimport.svg)
 
 ## Comparison Visualization
@@ -49,6 +50,8 @@ Für den Aufbau von in memory XML-Dokumenten wurde JavaScript benutzt. Hierfür 
 Auch wurde JavaScript verwendet, um Manipulationen am DOM vorzunehmen und diesen ansprechlicher zu gestalten.
 
 Die Anfragen an das Backend wurden mit JSON gestaltet. Dies hat den Grund, dass die JavaScript Objekte, welche an das Backend übertragen werden, besonders einfach in JSON umgewandelt werden können. Auch verwenden wir `fetch`, welches standardmässig JSON verwendet. Das bauen von XML-Requests wäre möglich, dann könnte aber `libxmljs`nicht mehr verwendet werden und wir müssten auf eine andere Bibliothek oder string interpolation zurückgreifen. Um die Komplexität des Projektes zu reduzieren, haben wir uns deshalb für Kommunukation in JSON entschieden.
+
+Sobald eine XML-Datei ausgewählt wurde, kann sie als Vorschau angezeigt werden. Auf diese Weise kann sie überarbeitet werden, und die aktualisierte Version wird dann in die Datenbank geschrieben. Diese Funktion wurde mit JavaScript implementiert.
 
 ## Fazit
 
