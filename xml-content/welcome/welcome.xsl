@@ -67,7 +67,7 @@
                 <xsl:attribute name="style">
                     <xsl:text>animation-delay: </xsl:text>
                     <!-- Calculate the delay based on the count -->
-                    <xsl:value-of select="format-number($count * 0.1, '#.0')">s</xsl:value-of>
+                    <xsl:value-of select="format-number($count * 0.1, '#.0')"></xsl:value-of>
                     <xsl:text>s;</xsl:text>
                 </xsl:attribute>
                 <xsl:value-of select="substring($text, 1, 1)"/>
