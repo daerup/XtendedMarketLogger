@@ -44,7 +44,7 @@ Diese Funktion ermöglicht es Benutzern, die XML-Datei, die beim der 'Plant Comp
 
 Ein Herausforderung war es, bei 'plantComparison' das Resultierende XML-Dokument erneut für den Benutzer darzustellen. Gelöst werden konnte dies, indem auf der Client-Seite mittels XSLT Transformiert wurde und das Resultat mit JavaScript den DOM manipuliert wurde.
 
-Ein Problem bei 'comparisonVisualization' ist, dass die XML-Datei an den Server gesendet werden muss. Ich wollte das XML-File lokal validieren und transformieren, aber ich habe keinen guten Weg gefunden, dies umzusetzen.
+Ein Problem bei 'comparisonVisualization' ist, dass die XML-Datei an den Server gesendet werden muss. Ich wollte das XML-File lokal validieren und transformieren, aber ich habe keinen guten Weg gefunden, dies umzusetzen. Auch sollte das resultierende XHTML der Transformation mittels JavaScript in den DOM eingefügt werden. Aus unerklärlichen Gründen wurde dann aber der Linien-Graf nicht angezeigt. Als workaround wurde dann das XHTML in einem neuen Tab geöffnet.
 
 ## Einsatz von nicht XML Technologien
 
@@ -56,9 +56,6 @@ Die Anfragen an das Backend wurden mit JSON gestaltet. Dies hat den Grund, dass 
 
 #### Data import
 Sobald eine XML-Datei ausgewählt wurde, kann sie als Vorschau angezeigt werden. Auf diese Weise kann sie überarbeitet werden, und die aktualisierte Version wird dann in die Datenbank geschrieben. Diese Funktion wurde mit JavaScript implementiert.
-
-#### Visualization
-Hier sollte ebenfalls das resultierende XHTML der Transformation mittels JavaScript in den DOM eingefügt werden. Aus unerklärlichen Gründen wurde dann aber der Line-Graf nicht angezeigt. Als workaround wurde dann das XHTML in einem neuen Tab geöffnet.
 
 ## Fazit
 
