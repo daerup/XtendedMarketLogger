@@ -33,14 +33,17 @@
             </body>
         </html>
     </xsl:template>
-
-    <!-- single menu item  -->
     <xsl:template match="item">
         <div class="dashboard-item card">
             <a>
                 <xsl:attribute name="href">
                     <xsl:value-of select="link"/>
                 </xsl:attribute>
+                <small class="tagline">
+                    <xsl:call-template name="process-each-character">
+                        <xsl:with-param name="text" select="tagline"/>
+                    </xsl:call-template>
+                </small>
                 <h2>
                     <xsl:value-of select="text"/>
                 </h2>
@@ -55,6 +58,25 @@
                 </small>
             </a>
         </div>
+    </xsl:template>
+    <xsl:template name="process-each-character">
+        <xsl:param name="text"/>
+        <xsl:param name="count" select="0"/>
+        <xsl:if test="string-length($text) > 0">
+            <span>
+                <xsl:attribute name="style">
+                    <xsl:text>animation-delay: </xsl:text>
+                    <!-- Calculate the delay based on the count -->
+                    <xsl:value-of select="format-number($count * 0.1, '#.0')">s</xsl:value-of>
+                    <xsl:text>s;</xsl:text>
+                </xsl:attribute>
+                <xsl:value-of select="substring($text, 1, 1)"/>
+            </span>
+            <xsl:call-template name="process-each-character">
+                <xsl:with-param name="text" select="substring($text, 2)"/>
+                <xsl:with-param name="count" select="$count + 1"/>
+            </xsl:call-template>
+        </xsl:if>
     </xsl:template>
     <xsl:template match="tag">
         <span class="tag">
