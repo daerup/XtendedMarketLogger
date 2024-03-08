@@ -14,7 +14,7 @@
             <body>
 
                 <!-- title and nav  -->
-                <h1>Welcome Xtended Market Logger</h1>
+                <h1>Welcome to Xtended Market Logger</h1>
 
                 <div class="content">
                     <!-- render menu nav  -->
