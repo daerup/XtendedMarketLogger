@@ -41,14 +41,14 @@
         <index>3</index>
     </item>
     <item>
-        <text>Calculator Visualisation</text>
-        <description>Visualisatise the xml file optained from the Calculator</description>
+        <text>Comparison Visualization</text>
+        <description>Visualisatie the xml file obtained from the plant comparison</description>
         <tags>
             <tag>SVG</tag>
             <tag>XSLT</tag>
             <tag>XML-Programming</tag>
         </tags>
-        <link>calcvis.xml</link>
+        <link>comparison-visualization.xml</link>
         <author>Jonas Fink</author>
         <tagline>New!</tagline>
         <index>4</index>

@@ -5,7 +5,7 @@ document.getElementById('addPlant').addEventListener('click', uploadXmlFile);
 
 //get xsl file
 var xslFile = new XMLHttpRequest();
-xslFile.open("GET", "CalculatorVisualisation/calcvis.xsl", false);
+xslFile.open("GET", "comparisonVisualization/comparisonVisualization.xsl", false);
 xslFile.send();
 var xsl = xslFile.responseXML;
 
@@ -38,8 +38,6 @@ async function uploadXmlFile() {
 }
 
 function applyXSLOnXml(xmlString) {
-    console.log(xmlString);
-    console.log("xml");
 
     var xml = new DOMParser().parseFromString(xmlString, "text/xml");
 
@@ -49,8 +47,6 @@ function applyXSLOnXml(xmlString) {
 
 
     var resultString = new XMLSerializer().serializeToString(resultDocument);
-
-    console.log(resultString);
 
     //load new page with teststring
     var newWindow = window.open();
