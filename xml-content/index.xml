@@ -1,83 +1,95 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="welcome/welcome.xsl"?>
 <menu>
-  <item>
-    <text>cross-document XSLT</text>
-    <description>View all plants</description>
-    <tags>
-      <tag>Default feature</tag>
-      <tag>XSLT</tag>
-    </tags>
-    <link>feature-01.xml</link>
-    <author>Benjamin Bäni</author>
-    <index>1</index>
-  </item>
-  <item>
-    <text>data-driven SVG</text>
-    <description>Get a graphical overview of prices</description>
-    <tags>
-      <tag>Default feature</tag>
-      <tag>SVG</tag>
-    </tags>
-    <link>feature-02.xml</link>
-    <author>Benjamin Bäni</author>
-    <index>2</index>
-  </item>
-  <item>
-    <text>FO and PDF</text>
-    <description>Create a printable energie statistics</description>
-    <tags>
-      <tag>Default feature</tag>
-      <tag>Format-Object</tag>
-    </tags>
-    <link>feature-03.xml</link>
-    <author>Benjamin Bäni</author>
-    <index>3</index>
-  </item>
-  <item>
-    <text>Add user input to data</text>
-    <description>Add custom price data</description>
-    <tags>
-      <tag>Default feature</tag>
-      <tag>XPath</tag>
-    </tags>
-    <link>feature-04.xml</link>
-    <author>Benjamin Bäni</author>
-    <index>4</index>
-  </item>
-  <item>
-    <text>Plant comparison</text>
-    <description>Compare the different plants in regard to price and timeframes</description>
-    <tags>
-      <tag>XSLT</tag>
-      <tag>XPath</tag>
-      <tag>XML-Programming</tag>
-    </tags>
-    <link>plantComparison.xml</link>
-    <author>Dario Portmann</author>
-    <index>5</index>
-  </item>
-  <item>
-    <text>Calculator</text>
-    <description>Calculate power usage and print report</description>
-    <tags>
-      <tag>Format Object</tag>
-      <tag>XML-Programming</tag>
-      <tag>XSLT</tag>
-    </tags>
-    <link>calculator.xml</link>
-    <author>Andrin Geiger</author>
-    <index>6</index>
-  </item>
-  <item>
-    <text>Data import</text>
-    <description>Import XML file to insert new plant power</description>
-    <tags>
-      <tag>Format Object</tag>
-      <tag>XML-Programming</tag>
-    </tags>
-    <link>dataimport.xml</link>
-    <author>Vithursiya Vijayasingam</author>
-    <index>7</index>
-  </item>
+    <item>
+        <text>cross-document XSLT</text>
+        <description>View all plants</description>
+        <tags>
+            <tag>Default feature</tag>
+            <tag>XSLT</tag>
+        </tags>
+        <link>feature-01.xml</link>
+        <author>Benjamin Bäni</author>
+        <index>1</index>
+    </item>
+    <item>
+        <text>data-driven SVG</text>
+        <description>Get a graphical overview of prices</description>
+        <tags>
+            <tag>Default feature</tag>
+            <tag>SVG</tag>
+        </tags>
+        <link>feature-02.xml</link>
+        <author>Benjamin Bäni</author>
+        <index>2</index>
+    </item>
+    <item>
+        <text>FO and PDF</text>
+        <description>Create a printable energie statistics</description>
+        <tags>
+            <tag>Default feature</tag>
+            <tag>Format-Object</tag>
+        </tags>
+        <link>feature-03.xml</link>
+        <author>Benjamin Bäni</author>
+        <index>3</index>
+    </item>
+    <item>
+        <text>Add user input to data</text>
+        <description>Add custom price data</description>
+        <tags>
+            <tag>Default feature</tag>
+            <tag>XPath</tag>
+        </tags>
+        <link>feature-04.xml</link>
+        <author>Benjamin Bäni</author>
+        <index>4</index>
+    </item>
+    <item>
+        <text>Plant comparison</text>
+        <description>Compare the different plants in regard to price and timeframes</description>
+        <tags>
+            <tag>XSLT</tag>
+            <tag>XPath</tag>
+            <tag>XML-Programming</tag>
+        </tags>
+        <link>plantComparison.xml</link>
+        <author>Dario Portmann</author>
+        <index>5</index>
+    </item>
+    <item>
+        <text>Calculator</text>
+        <description>Calculate power usage and print report</description>
+        <tags>
+            <tag>Format Object</tag>
+            <tag>XML-Programming</tag>
+            <tag>XSLT</tag>
+        </tags>
+        <link>calculator.xml</link>
+        <author>Andrin Geiger</author>
+        <index>6</index>
+    </item>
+    <item>
+        <text>Data import</text>
+        <description>Import XML file to insert new plant power</description>
+        <tags>
+            <tag>Format Object</tag>
+            <tag>XML-Programming</tag>
+        </tags>
+        <link>dataimport.xml</link>
+        <author>Vithursiya Vijayasingam</author>
+        <index>7</index>
+    </item>
+    <item>
+        <text>Calculator Visualisation</text>
+        <description>Visualisatise the xml file optained from the Calculator</description>
+        <tags>
+            <tag>SVG</tag>
+            <tag>XSLT</tag>
+            <tag>XML-Programming</tag>
+        </tags>
+        <link>calcvis.xml</link>
+        <author>Jonas Fink</author>
+        <index>7</index>
+    </item>
 </menu>

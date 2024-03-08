@@ -4,13 +4,14 @@ const fs = require("fs");
 const libxmljs = require("libxmljs2");
 const app = express();
 
-app.use(express.static(path.join(__dirname, "xml-content")));
-app.use(express.text());
-app.use(express.urlencoded({ extended: false }));
+const payloadLimit = '10mb'
+app.use(express.static(path.join(__dirname, 'xml-content')));
+app.use(express.text({ limit: payloadLimit }));
+app.use(express.urlencoded({ limit: payloadLimit, extended: false }));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve("xml-content", "index.xml"));
-});
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve('xml-content', 'index.xml'));
+})
 
 app.post("/buildXML", async (req, res) => {
   const data = JSON.parse(req.body);
@@ -160,6 +161,18 @@ app.post("/comparePlants", (req, res) => {
   res.setHeader("Content-Type", "application/xml");
   res.setHeader("Content-Disposition", 'attachment; filename="response.xml"');
   res.send(xmlCompareDoc.toString());
+});
+
+app.post('/vis', (req, res) => {
+    try {
+        const xmlData = req.body;
+
+        res.send(xmlData);
+    }
+    catch (error) {
+        console.error('Error:', error.message);
+        res.status(400).send(error.message);
+    }
 });
 
 function validateDatabase(xmlDocDatabase) {
