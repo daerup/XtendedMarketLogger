@@ -1,0 +1,4 @@
+Wie im Unterricht angesprochen, geben wir unser Projekt als Git Repository ab.
+
+Das Fact-Sheet (README.md) und der Code ist hier zu finden:
+https://github.com/daerup/XtendedMarketLogger
