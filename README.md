@@ -21,11 +21,13 @@ Neue Geräte werden zuerst in einer Tabelle auf der Website dargestellt. Diese T
 
 ### Data import
 Mit diesem Feature können Benutzer eine XML-Datei hochladen. Die hochgeladene Datei wird validiert und in der Datenbank `database.xml` gespeichert. Benutzer haben ebenfalls die Möglichkeit, ein XML direkt zu schreiben und hochzuladen. Um die XML-Datei den Benutzern einfacher darzustellen, wird `validation.js` verwendet. Sobald eine XML-Datei ausgewählt wird, wird sie in der Preview-Textarea angezeigt. Mit dem 'Add'-Button im Formular kann bestätigt werden, dass die XML-Datei in die Datenbank geladen werden darf. Die Validierung der XML erfolgt serverseitig in `index.js` und basiert auf einem XSD-Schema `uploadXML.xsd`.
+
 ![alt text](./documentation/images/dataimport.svg)
 
 ## Comparison Visualization
 
 Diese Funktion ermöglicht es Benutzern, die XML-Datei, die beim der 'Plant Comparison' heruntergeladen werden kann, zu visualisieren. Es kann eine XML-Datei ausgewählt werden, die dann mit einem Klick auf 'Visualisieren' an den Server gesendet wird. Der Server validiert das XML anhand des 'database.xsd' und sendet es zurück. Im Browser wird das XML dann mithilfe der comparisonVisualization.xsl-Datei in ein XHTML-Dokument mit eingebetteten SVGs umgewandelt. Das XHTML-Dokument wird nun in einem neuen Tab geöffnet.
+
 ![alt text](./documentation/images/comparisonVisualization.svg)
 
 ## Frameworks und Technologien
@@ -52,7 +54,11 @@ Auch wurde JavaScript verwendet, um Manipulationen am DOM vorzunehmen und diesen
 
 Die Anfragen an das Backend wurden mit JSON gestaltet. Dies hat den Grund, dass die JavaScript Objekte, welche an das Backend übertragen werden, besonders einfach in JSON umgewandelt werden können. Auch verwenden wir `fetch`, welches standardmässig JSON verwendet. Das bauen von XML-Requests wäre möglich, dann könnte aber `libxmljs`nicht mehr verwendet werden und wir müssten auf eine andere Bibliothek oder string interpolation zurückgreifen. Um die Komplexität des Projektes zu reduzieren, haben wir uns deshalb für Kommunukation in JSON entschieden.
 
+#### Data import
 Sobald eine XML-Datei ausgewählt wurde, kann sie als Vorschau angezeigt werden. Auf diese Weise kann sie überarbeitet werden, und die aktualisierte Version wird dann in die Datenbank geschrieben. Diese Funktion wurde mit JavaScript implementiert.
+
+#### Visualization
+Hier sollte ebenfalls das resultierende XHTML der Transformation mittels JavaScript in den DOM eingefügt werden. Aus unerklärlichen Gründen wurde dann aber der Line-Graf nicht angezeigt. Als workaround wurde dann das XHTML in einem neuen Tab geöffnet.
 
 ## Fazit
 
