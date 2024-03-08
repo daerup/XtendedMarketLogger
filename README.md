@@ -22,6 +22,10 @@ Neue Geräte werden zuerst in einer Tabelle auf der Website dargestellt. Diese T
 Mit diesem Feature können Benutzer eine XML-Datei hochladen. Die hochgeladene Datei wird validiert und in der Datenbank `database.xml` gespeichert. Benutzer haben ebenfalls die Möglichkeit, ein XML direkt zu schreiben und hochzuladen. Um die XML-Datei den Benutzern einfacher darzustellen, wird `validation.js` verwendet. Sobald eine XML-Datei ausgewählt wird, wird sie in der Preview-Textarea angezeigt. Mit dem 'Add'-Button im Formular kann bestätigt werden, dass die XML-Datei in die Datenbank geladen werden darf. Die Validierung der XML erfolgt serverseitig in `index.js` und basiert auf einem XSD-Schema `uploadXML.xsd`. 
 ![alt text](./documentation/images/dataimport.svg)
 
+## Comparison Visualization
+
+Diese Funktion ermöglicht es Benutzern, die XML-Datei, die beim der 'Plant Comparison' heruntergeladen werden kann, zu visualisieren. Es kann eine XML-Datei ausgewählt werden, die dann mit einem Klick auf 'Visualisieren' an den Server gesendet wird. Der Server validiert das XML anhand des 'database.xsd' und sendet es zurück. Im Browser wird das XML dann mithilfe der comparisonVisualization.xsl-Datei in ein XHTML-Dokument mit eingebetteten SVGs umgewandelt. Das XHTML-Dokument wird nun in einem neuen Tab geöffnet.
+
 ## Frameworks und Technologien
 
 - XML
@@ -35,6 +39,8 @@ Mit diesem Feature können Benutzer eine XML-Datei hochladen. Die hochgeladene D
 ## Stolpersteine
 
 Ein Herausforderung war es, bei 'plantComparison' das Resultierende XML-Dokument erneut für den Benutzer darzustellen. Gelöst werden konnte dies, indem auf der Client-Seite mittels XSLT Transformiert wurde und das Resultat mit JavaScript den DOM manipuliert wurde.
+
+Ein Problem bei 'comparisonVisualization' ist, dass die XML-Datei an den Server gesendet werden muss. Ich wollte das XML-File lokal validieren und transformieren, aber ich habe keinen guten Weg gefunden, dies umzusetzen.
 
 ## Einsatz von nicht XML Technologien
 
