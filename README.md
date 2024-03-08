@@ -26,6 +26,7 @@ Mit diesem Feature können Benutzer eine XML-Datei hochladen. Die hochgeladene D
 ## Comparison Visualization
 
 Diese Funktion ermöglicht es Benutzern, die XML-Datei, die beim der 'Plant Comparison' heruntergeladen werden kann, zu visualisieren. Es kann eine XML-Datei ausgewählt werden, die dann mit einem Klick auf 'Visualisieren' an den Server gesendet wird. Der Server validiert das XML anhand des 'database.xsd' und sendet es zurück. Im Browser wird das XML dann mithilfe der comparisonVisualization.xsl-Datei in ein XHTML-Dokument mit eingebetteten SVGs umgewandelt. Das XHTML-Dokument wird nun in einem neuen Tab geöffnet.
+![alt text](./documentation/images/comparisonVisualization.svg)
 
 ## Frameworks und Technologien
 
